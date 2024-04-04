@@ -1,0 +1,6 @@
+framework module Pods_SonsOfAnarchy {
+  umbrella header "Pods-SonsOfAnarchy-umbrella.h"
+
+  export *
+  module * { export * }
+}
