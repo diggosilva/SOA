@@ -14,6 +14,7 @@ class FilterView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FilterCell.self, forCellReuseIdentifier: FilterCell.identifier)
+        tableView.rowHeight = 40
         return tableView
     }()
     
@@ -22,6 +23,7 @@ class FilterView: UIView {
     init(viewModel: FilterViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        setupView()
     }
     
     required init?(coder: NSCoder) {

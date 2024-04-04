@@ -18,14 +18,13 @@ class CharacterViewModel {
     private var service = Service()
     
     var backupCharacter: [DiggoResponse] = []
-    var filteredClubs: [DiggoResponse] = []
+    var filteredCharacters: [DiggoResponse] = []
     var filters: [Filter] = []
-    var clubs: [String] = []
     
     func loadDataCharacters() {
         service.getCharactersSOA { personagens in
             self.backupCharacter = personagens
-            self.filteredClubs = self.backupCharacter
+            self.filteredCharacters = self.backupCharacter
             var uniqueClub: Set<String> = []
             
             for personagem in personagens {
@@ -49,15 +48,15 @@ class CharacterViewModel {
         let selectedFilters = self.filters.filter({ $0.isSelected })
         let selectedClubs = selectedFilters.map({ $0.club })
         
-//        self.filteredClubs = backupCharacter.filter({ $0.club.contains(selectedClubs) })
+//        self.filteredCharacters = backupCharacter.filter({ $0.club.contains(selectedClubs) })
         self.state.value = .loaded
     }
     
     func numberOfRows() -> Int {
-        return filteredClubs.count
+        return filteredCharacters.count
     }
     
     func cellForRowAt(indexPath: IndexPath) -> DiggoResponse {
-        return filteredClubs[indexPath.row]
+        return filteredCharacters[indexPath.row]
     }
 }
