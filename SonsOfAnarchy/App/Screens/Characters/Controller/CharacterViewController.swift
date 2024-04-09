@@ -74,6 +74,6 @@ class CharacterViewController: UIViewController {
 
 extension CharacterViewController: FilterViewControllerDelegate {
     func didUpdateFilters(filters: [Filter]) {
-//        viewModel.updateChampions(filters: filters)
+        viewModel.updateChampions(filters: filters)
     }
 }

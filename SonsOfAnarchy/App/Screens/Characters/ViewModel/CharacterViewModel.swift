@@ -35,7 +35,7 @@ class CharacterViewModel {
             print("DEBUG: Clubes: \(clubs)")
             print("DEBUG: Personagens: \(self.backupCharacter)")
             
-            self.filters = clubs.map { Filter(club: $0, isSelected: false) }
+            self.filters = clubs.map { Filter(club: $0, isSelected: true) }
             
             self.state.value = .loaded
         } onError: { error in
@@ -44,12 +44,19 @@ class CharacterViewModel {
     }
     
     func updateChampions(filters: [Filter]) {
-        self.filters = filters
-        let selectedFilters = self.filters.filter({ $0.isSelected })
-        let selectedClubs = selectedFilters.map({ $0.club })
-        
-//        self.filteredCharacters = backupCharacter.filter({ $0.club.contains(selectedClubs) })
+        if filters.isEmpty {
+            filteredCharacters = backupCharacter
+           
+        } else {
+            self.filters = filters
+            let selectedFilters = self.filters.filter({ $0.isSelected })
+            let selectedClubs = selectedFilters.map({ $0.club })
+            
+            self.filteredCharacters = backupCharacter.filter({ selectedClubs.contains($0.club) })
+            print("AQUI: \(filteredCharacters)")
+        }
         self.state.value = .loaded
+
     }
     
     func numberOfRows() -> Int {

@@ -86,6 +86,7 @@
 			children = (
 				92F2183A2BB1E5ED00B415FC /* SOAResponse.swift */,
 				92EA9F0E2BB229D7008574EA /* DiggoResponse.swift */,
+				929094162BBF34E800D8D606 /* Filter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,8 +207,8 @@
 		92F218212BB1DCD500B415FC /* SonsOfAnarchy */ = {
 			isa = PBXGroup;
 			children = (
-				92F218362BB1DCF500B415FC /* Resources */,
 				92F218372BB1DD4B00B415FC /* App */,
+				92F218362BB1DCF500B415FC /* Resources */,
 			);
 			path = SonsOfAnarchy;
 			sourceTree = "<group>";
@@ -231,7 +232,6 @@
 				929094192BBF45AE00D8D606 /* Network */,
 				9290941A2BBF45C600D8D606 /* Screens */,
 				929094232BBF467D00D8D606 /* Utils */,
-				929094162BBF34E800D8D606 /* Filter.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";

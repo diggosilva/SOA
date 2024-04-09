@@ -49,5 +49,4 @@ class FilterViewController: UIViewController {
         delegate?.didUpdateFilters(filters: viewModel.filters)
         navigationController?.popViewController(animated: true)
     }
-    
 }
