@@ -20,3 +20,18 @@ struct DiggoResponse: Codable {
         return URL(string: image)
     }
 }
+
+struct CharSelected: Codable {
+    let firstName: String
+    let lastName: String
+    let image: String
+    let club: String
+    let occupation: String
+    let id: Int
+    let playedBy: [String]
+    let gender: String
+    
+    var imageChar: URL? {
+        return URL(string: image)
+    }
+}

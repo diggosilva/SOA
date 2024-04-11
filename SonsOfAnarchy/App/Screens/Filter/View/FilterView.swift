@@ -14,7 +14,6 @@ class FilterView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FilterCell.self, forCellReuseIdentifier: FilterCell.identifier)
-        tableView.rowHeight = 40
         return tableView
     }()
     

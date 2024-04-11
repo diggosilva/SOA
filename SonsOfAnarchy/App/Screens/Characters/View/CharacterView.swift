@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CharacterViewDelegate: AnyObject {
+    func goToDetails(diggoResponse: DiggoResponse)
+}
+
 class CharacterView: UIView {
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
@@ -42,6 +46,7 @@ class CharacterView: UIView {
         return label
     }()
     
+    weak var delegate: CharacterViewDelegate?
     let viewModel: CharacterViewModel
     
     init(viewModel: CharacterViewModel) {
@@ -53,7 +58,7 @@ class CharacterView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupView() {
         setHierarchy()
         setConstraints()
@@ -90,6 +95,11 @@ extension CharacterView: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath) as? CharacterCell else { return UICollectionViewCell() }
         cell.configure(diggoResponse: viewModel.cellForRowAt(indexPath: indexPath))
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let character = viewModel.backupCharacter[indexPath.row]
+        delegate?.goToDetails(diggoResponse: character)
     }
 }
 

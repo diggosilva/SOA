@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CharacterViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class CharacterViewController: UIViewController {
         title = "Sons Of Anarchy"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
+        characterView.delegate = self
     }
     
     @objc private func didTapAddButton() {
@@ -75,5 +77,12 @@ class CharacterViewController: UIViewController {
 extension CharacterViewController: FilterViewControllerDelegate {
     func didUpdateFilters(filters: [Filter]) {
         viewModel.updateChampions(filters: filters)
+    }
+}
+
+extension CharacterViewController: CharacterViewDelegate {
+    func goToDetails(diggoResponse: DiggoResponse) {
+        let detailsVC = DetailsViewController(diggoResponse: diggoResponse)
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

@@ -44,18 +44,21 @@ class CharacterViewModel {
     }
     
     func updateChampions(filters: [Filter]) {
-        if filters.isEmpty {
-            filteredCharacters = backupCharacter
-           
-        } else {
             self.filters = filters
             let selectedFilters = self.filters.filter({ $0.isSelected })
             let selectedClubs = selectedFilters.map({ $0.club })
             
             self.filteredCharacters = backupCharacter.filter({ selectedClubs.contains($0.club) })
-            print("AQUI: \(filteredCharacters)")
-        }
+       
         self.state.value = .loaded
+    }
+    
+    func loadDetails(charSelected: CharSelected) {
+        service.getDetails(id: charSelected.id) { chars in
+            print(chars)
+        } onError: { error in
+            self.state.value = .error
+        }
 
     }
     
@@ -64,6 +67,10 @@ class CharacterViewModel {
     }
     
     func cellForRowAt(indexPath: IndexPath) -> DiggoResponse {
+        return filteredCharacters[indexPath.row]
+    }
+    
+    func didSelectItemAt(indexPath: IndexPath) -> DiggoResponse {
         return filteredCharacters[indexPath.row]
     }
 }
