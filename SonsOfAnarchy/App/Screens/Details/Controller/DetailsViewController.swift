@@ -10,10 +10,10 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     lazy var detailsView = DetailsView()
-    var diggoResponse: DiggoResponse
+    var viewModel: DetailsViewModel
     
     init(diggoResponse: DiggoResponse) {
-        self.diggoResponse = diggoResponse
+        self.viewModel = DetailsViewModel(diggoResponse: diggoResponse)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,11 +29,11 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavBar()
-        print(diggoResponse)
+        detailsView.configure(diggoResponse: viewModel.diggoResponse)
     }
     
     private func setNavBar() {
-        title = "Jax"
+        title = viewModel.diggoResponse.firstName
         view.backgroundColor = .systemBackground
     }
 }

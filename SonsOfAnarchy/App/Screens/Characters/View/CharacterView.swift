@@ -98,7 +98,8 @@ extension CharacterView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let character = viewModel.backupCharacter[indexPath.row]
+        let character = viewModel.filteredCharacters[indexPath.row]
+        let detailVC = DetailsViewController(diggoResponse: character)
         delegate?.goToDetails(diggoResponse: character)
     }
 }

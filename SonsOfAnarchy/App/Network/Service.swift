@@ -46,8 +46,7 @@ final class Service: ServiceProtocol {
                         var diggoResponse: [DiggoResponse] = []
                         
                         for character in charactersSOA {
-                            
-                            diggoResponse.append(DiggoResponse(firstName: character.firstName, lastName: character.firstName, image: character.image, club: character.club, occupation: character.occupation, id: character.id, playedBy: character.playedBy))
+                            diggoResponse.append(DiggoResponse(firstName: character.firstName, lastName: character.lastName, image: character.image, club: character.club, occupation: character.occupation, id: character.id, playedBy: character.playedBy))
                         }
                         
                         diggoResponse = diggoResponse.sorted { (character1, character2) -> Bool in
@@ -66,7 +65,7 @@ final class Service: ServiceProtocol {
         dataTask?.resume()
     }
     
-    func getDetails(id: Int, onSucccess: @escaping([CharSelected]) -> Void, onError: @escaping(Error) -> Void) {
+    func getDetails(id: Int, onSucccess: @escaping(CharSelected) -> Void, onError: @escaping(Error) -> Void) {
         guard let url = URL(string: "https://sons-of-anrachy-api.onrender.com/api/v1/characters/\(id)") else { return }
         let urlRequest = URLRequest(url: url)
         
@@ -79,19 +78,11 @@ final class Service: ServiceProtocol {
                 
                 if let data = data {
                     do {
-                        let charSOA = try JSONDecoder().decode([SOAResponse].self, from: data)
-                        var diggoResponse: [CharSelected] = []
+                        let charSOA = try JSONDecoder().decode(SOAResponse.self, from: data)
+                        var diggoSelectedResponse = CharSelected(firstName: charSOA.firstName, lastName: charSOA.lastName, image: charSOA.image, club: charSOA.club, occupation: charSOA.occupation, id: charSOA.id, playedBy: charSOA.playedBy, gender: charSOA.gender.rawValue)
                         
-                        for char in charSOA {
-                            diggoResponse.append(CharSelected(firstName: char.firstName, lastName: char.lastName, image: char.image, club: char.club, occupation: char.occupation, id: char.id, playedBy: char.playedBy, gender: char.gender.rawValue))
-                        }
-                        
-                        diggoResponse = diggoResponse.sorted { (char1, char2) -> Bool in
-                            return char1.firstName.caseInsensitiveCompare(char2.firstName) == .orderedAscending
-                        }
-                        
-                        onSucccess(diggoResponse)
-                        print("DEBUG: Personagens.. \(diggoResponse)")
+                        onSucccess(diggoSelectedResponse)
+                        print("DEBUG: Personagens.. \(diggoSelectedResponse)")
                     } catch {
                         onError(error)
                         print("DEBUG: Erro ao pegar dados do Personagem selecionado.. \(error.localizedDescription)")
@@ -99,5 +90,6 @@ final class Service: ServiceProtocol {
                 }
             }
         })
+        dataTask?.resume()
     }
 }

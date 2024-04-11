@@ -32,8 +32,6 @@ class CharacterViewModel {
             }
             
             let clubs = Array(uniqueClub).sorted()
-            print("DEBUG: Clubes: \(clubs)")
-            print("DEBUG: Personagens: \(self.backupCharacter)")
             
             self.filters = clubs.map { Filter(club: $0, isSelected: true) }
             
@@ -53,13 +51,13 @@ class CharacterViewModel {
         self.state.value = .loaded
     }
     
-    func loadDetails(charSelected: CharSelected) {
-        service.getDetails(id: charSelected.id) { chars in
-            print(chars)
+    func loadDataDetails(charSelected: CharSelected) {
+        service.getDetails(id: charSelected.id) { char in
+            var selectedChar = char
+            self.state.value = .loaded
         } onError: { error in
             self.state.value = .error
         }
-
     }
     
     func numberOfRows() -> Int {

@@ -12,7 +12,7 @@ class FilterViewModel {
     
     init(filters: [Filter]) {
         self.filters = filters
-        self.filters = self.filters.filter({ $0.club != "" })
+//        self.filters = self.filters.filter({ $0.club != "" })
     }
     
     func numberOfRows() -> Int {

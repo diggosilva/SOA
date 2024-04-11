@@ -10,6 +10,8 @@ import Foundation
 struct DiggoResponse: Codable {
     let firstName: String
     let lastName: String
+//    let fullName: String
+//    let gender: String
     let image: String
     let club: String
     let occupation: String

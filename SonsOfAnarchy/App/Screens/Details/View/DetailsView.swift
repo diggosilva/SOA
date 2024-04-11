@@ -23,7 +23,6 @@ class DetailsView: UIView {
     lazy var labelName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Jax Teller"
         label.font = .preferredFont(forTextStyle: .headline)
         label.textAlignment = .center
         return label
@@ -32,15 +31,21 @@ class DetailsView: UIView {
     lazy var labelGender: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Masculino"
         label.font = .preferredFont(forTextStyle: .body)
+        return label
+    }()
+    
+    lazy var labelClub: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
         return label
     }()
     
     lazy var labelOccupation: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Presidente"
         label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
@@ -48,7 +53,6 @@ class DetailsView: UIView {
     lazy var labelPlayedBy: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Nome do ator"
         label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
@@ -64,7 +68,11 @@ class DetailsView: UIView {
     
     func configure(diggoResponse: DiggoResponse) {
         imageChar.sd_setImage(with: diggoResponse.imageChar)
-        labelName.text = diggoResponse.firstName
+        labelName.text = "\(diggoResponse.firstName) \(diggoResponse.lastName)"
+        labelGender.text = "GÊNERO: "
+        labelClub.text = "CLUBE: \(diggoResponse.club)".replacingOccurrences(of: "Sons of Anarchy Motorcycle Club, Redwood Original (SAMCRO)", with: "Sons of Anarchy (SAMCRO)")
+        labelOccupation.text = "OCUPAÇÃO: \(diggoResponse.occupation)".capitalized
+        labelPlayedBy.text = "INTERPRETE: \(diggoResponse.playedBy.first ?? "")"
     }
     
     private func setupView() {
@@ -76,6 +84,7 @@ class DetailsView: UIView {
         addSubview(imageChar)
         addSubview(labelName)
         addSubview(labelGender)
+        addSubview(labelClub)
         addSubview(labelOccupation)
         addSubview(labelPlayedBy)
     }
@@ -96,7 +105,11 @@ class DetailsView: UIView {
             labelGender.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
             labelGender.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
             
-            labelOccupation.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
+            labelClub.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
+            labelClub.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+            labelClub.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+            
+            labelOccupation.topAnchor.constraint(equalTo: labelClub.bottomAnchor, constant: 10),
             labelOccupation.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
             labelOccupation.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
             

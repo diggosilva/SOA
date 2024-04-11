@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class DetailsViewModel {
+    var diggoResponse: DiggoResponse
+    
+    init(diggoResponse: DiggoResponse) {
+        self.diggoResponse = diggoResponse
+    }
+}

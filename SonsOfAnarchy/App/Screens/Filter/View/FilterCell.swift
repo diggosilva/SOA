@@ -13,8 +13,6 @@ class FilterCell: UITableViewCell {
     lazy var labelClub: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-//        label.adjustsFontSizeToFitWidth = true
-//        label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         return label
     }()
@@ -29,12 +27,11 @@ class FilterCell: UITableViewCell {
     }
     
     func configure(filter: Filter) {
-        labelClub.text = filter.club
+        labelClub.text = filter.club.isEmpty ? "No Club" : filter.club
         self.tintColor = UIColor.label
         self.accessoryType = UITableViewCell.AccessoryType.checkmark
         self.accessoryType = filter.isSelected ? .checkmark : .none
     }
-    
     
     private func setupView() {
         setHierarchy()
