@@ -44,7 +44,7 @@ import Foundation
 
 
 // MARK: - SOAResponseElement
-struct SOAResponse: Codable {
+struct ResponseBackEnd: Codable {
     let aliases: [String]
     let club, firstName, fullName: String
     let gender: Gender

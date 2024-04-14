@@ -17,8 +17,8 @@ class CharacterViewModel {
     var state: Bindable<CharacterControllerStates> = Bindable(value: .loading)
     private var service = Service()
     
-    var backupCharacter: [DiggoResponse] = []
-    var filteredCharacters: [DiggoResponse] = []
+    var backupCharacter: [PersonagemResponse] = []
+    var filteredCharacters: [PersonagemResponse] = []
     var filters: [Filter] = []
     
     func loadDataCharacters() {
@@ -51,24 +51,15 @@ class CharacterViewModel {
         self.state.value = .loaded
     }
     
-    func loadDataDetails(charSelected: CharSelected) {
-        service.getDetails(id: charSelected.id) { char in
-            var selectedChar = char
-            self.state.value = .loaded
-        } onError: { error in
-            self.state.value = .error
-        }
-    }
-    
     func numberOfRows() -> Int {
         return filteredCharacters.count
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> DiggoResponse {
+    func cellForRowAt(indexPath: IndexPath) -> PersonagemResponse {
         return filteredCharacters[indexPath.row]
     }
     
-    func didSelectItemAt(indexPath: IndexPath) -> DiggoResponse {
+    func didSelectItemAt(indexPath: IndexPath) -> PersonagemResponse {
         return filteredCharacters[indexPath.row]
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CharacterViewDelegate: AnyObject {
-    func goToDetails(diggoResponse: DiggoResponse)
+    func goToDetails(diggoResponse: PersonagemResponse)
 }
 
 class CharacterView: UIView {
@@ -98,9 +98,9 @@ extension CharacterView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let character = viewModel.filteredCharacters[indexPath.row]
-        let detailVC = DetailsViewController(diggoResponse: character)
-        delegate?.goToDetails(diggoResponse: character)
+        let personagem = viewModel.filteredCharacters[indexPath.row].id
+        let detailVC = DetailsViewController(id: personagem)
+//        delegate?.goToDetails(diggoResponse: personagem)
     }
 }
 
@@ -110,4 +110,4 @@ extension CharacterView: UICollectionViewDelegateFlowLayout {
         let itemWidth = width / 2
         return CGSize(width: itemWidth, height: itemWidth * 1.5)
     }
-}
+} 

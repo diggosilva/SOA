@@ -81,7 +81,7 @@ extension CharacterViewController: FilterViewControllerDelegate {
 }
 
 extension CharacterViewController: CharacterViewDelegate {
-    func goToDetails(diggoResponse: DiggoResponse) {
+    func goToDetails(diggoResponse: PersonagemResponse) {
         let detailsVC = DetailsViewController(diggoResponse: diggoResponse)
         navigationController?.pushViewController(detailsVC, animated: true)
     }
