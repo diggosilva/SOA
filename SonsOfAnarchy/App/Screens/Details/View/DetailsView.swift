@@ -35,6 +35,15 @@ class DetailsView: UIView {
         return label
     }()
     
+    lazy var labelFullName: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        return label
+    }()
+    
     lazy var labelClub: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -66,13 +75,14 @@ class DetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(diggoResponse: DiggoResponse) {
-        imageChar.sd_setImage(with: diggoResponse.imageChar)
-        labelName.text = "\(diggoResponse.firstName) \(diggoResponse.lastName)"
-        labelGender.text = "GÊNERO: "
-        labelClub.text = "CLUBE: \(diggoResponse.club)".replacingOccurrences(of: "Sons of Anarchy Motorcycle Club, Redwood Original (SAMCRO)", with: "Sons of Anarchy (SAMCRO)")
-        labelOccupation.text = "OCUPAÇÃO: \(diggoResponse.occupation)".capitalized
-        labelPlayedBy.text = "INTERPRETE: \(diggoResponse.playedBy.first ?? "")"
+    func configure(personagem: Personagem) {
+        imageChar.sd_setImage(with: personagem.imageChar)
+        labelName.text = "\(personagem.firstName) \(personagem.lastName)"
+        labelGender.text = "GÊNERO: \(personagem.gender)"
+        labelFullName.text = "NOME COMPLETO: \(personagem.fullName)"
+        labelClub.text = "CLUBE: \(personagem.club)".replacingOccurrences(of: "Sons of Anarchy Motorcycle Club, Redwood Original (SAMCRO)", with: "Sons of Anarchy (SAMCRO)")
+        labelOccupation.text = "OCUPAÇÃO: \(personagem.occupation)".capitalized
+        labelPlayedBy.text = "INTERPRETE: \(personagem.playedBy.first ?? "")"
     }
     
     private func setupView() {
@@ -80,42 +90,47 @@ class DetailsView: UIView {
         setConstraints()
     }
     
-    private func setHierarchy () {
-        addSubview(imageChar)
-        addSubview(labelName)
-        addSubview(labelGender)
-        addSubview(labelClub)
-        addSubview(labelOccupation)
-        addSubview(labelPlayedBy)
+    func addSubviews(_ views: [UIView]) {
+        views.forEach({ addSubview($0.self) })
+    }
+    
+    private func setHierarchy() {
+        addSubviews([imageChar, labelName, labelGender, labelFullName, labelClub, labelOccupation, labelPlayedBy])
     }
     
     private func setConstraints() {
-        NSLayoutConstraint.activate([
-            imageChar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            imageChar.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageChar.widthAnchor.constraint(equalToConstant: 200),
-            imageChar.heightAnchor.constraint(equalToConstant: 250),
-            
-            labelName.topAnchor.constraint(equalTo: imageChar.bottomAnchor, constant: 6),
-            labelName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            labelName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            labelName.heightAnchor.constraint(equalToConstant: 30),
-            
-            labelGender.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 10),
-            labelGender.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
-            labelGender.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
-            
-            labelClub.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
-            labelClub.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
-            labelClub.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
-            
-            labelOccupation.topAnchor.constraint(equalTo: labelClub.bottomAnchor, constant: 10),
-            labelOccupation.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
-            labelOccupation.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
-            
-            labelPlayedBy.topAnchor.constraint(equalTo: labelOccupation.bottomAnchor, constant: 10),
-            labelPlayedBy.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
-            labelPlayedBy.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
-        ])
+        NSLayoutConstraint.activate(
+            [
+                imageChar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+                imageChar.centerXAnchor.constraint(equalTo: centerXAnchor),
+                imageChar.widthAnchor.constraint(equalToConstant: 200),
+                imageChar.heightAnchor.constraint(equalToConstant: 250),
+                
+                labelName.topAnchor.constraint(equalTo: imageChar.bottomAnchor, constant: 6),
+                labelName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+                labelName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+                labelName.heightAnchor.constraint(equalToConstant: 30),
+                
+                labelGender.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 10),
+                labelGender.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelGender.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+                
+                labelFullName.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
+                labelFullName.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelFullName.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+                
+                labelClub.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 10),
+                labelClub.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelClub.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+                
+                labelOccupation.topAnchor.constraint(equalTo: labelClub.bottomAnchor, constant: 10),
+                labelOccupation.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelOccupation.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+                
+                labelPlayedBy.topAnchor.constraint(equalTo: labelOccupation.bottomAnchor, constant: 10),
+                labelPlayedBy.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelPlayedBy.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+            ]
+        )
     }
 }

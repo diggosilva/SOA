@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct DiggoResponse: Codable {
+struct PersonagemResponse: Codable {
     let firstName: String
     let lastName: String
-//    let fullName: String
-//    let gender: String
+    let fullName: String
+    let gender: String
     let image: String
     let club: String
     let occupation: String
@@ -23,15 +23,16 @@ struct DiggoResponse: Codable {
     }
 }
 
-struct CharSelected: Codable {
+struct Personagem: Codable {
     let firstName: String
     let lastName: String
+    let fullName: String
+    let gender: String
     let image: String
     let club: String
     let occupation: String
     let id: Int
     let playedBy: [String]
-    let gender: String
     
     var imageChar: URL? {
         return URL(string: image)

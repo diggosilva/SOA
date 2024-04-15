@@ -26,7 +26,7 @@
 		92F2182C2BB1DCD600B415FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F2182B2BB1DCD600B415FC /* Assets.xcassets */; };
 		92F2182F2BB1DCD600B415FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F2182D2BB1DCD600B415FC /* LaunchScreen.storyboard */; };
 		92F218392BB1DE5700B415FC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F218382BB1DE5700B415FC /* Service.swift */; };
-		92F2183B2BB1E5ED00B415FC /* SOAResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2183A2BB1E5ED00B415FC /* SOAResponse.swift */; };
+		92F2183B2BB1E5ED00B415FC /* ResponseBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2183A2BB1E5ED00B415FC /* ResponseBackEnd.swift */; };
 		92F2183D2BB1E90D00B415FC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2183C2BB1E90D00B415FC /* Bindable.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,7 @@
 		92F2182E2BB1DCD600B415FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92F218302BB1DCD600B415FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92F218382BB1DE5700B415FC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		92F2183A2BB1E5ED00B415FC /* SOAResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOAResponse.swift; sourceTree = "<group>"; };
+		92F2183A2BB1E5ED00B415FC /* ResponseBackEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBackEnd.swift; sourceTree = "<group>"; };
 		92F2183C2BB1E90D00B415FC /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D7B4DFA100013FD70F6DB493 /* Pods-SonsOfAnarchy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SonsOfAnarchy.release.xcconfig"; path = "Target Support Files/Pods-SonsOfAnarchy/Pods-SonsOfAnarchy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +90,7 @@
 		929094182BBF459900D8D606 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				92F2183A2BB1E5ED00B415FC /* SOAResponse.swift */,
+				92F2183A2BB1E5ED00B415FC /* ResponseBackEnd.swift */,
 				92EA9F0E2BB229D7008574EA /* DiggoResponse.swift */,
 				929094162BBF34E800D8D606 /* Filter.swift */,
 			);
@@ -407,7 +407,7 @@
 				92AF86572BBDE56D003CF0EC /* CharacterView.swift in Sources */,
 				92DDF3692BC5E2340096C792 /* DetailsView.swift in Sources */,
 				92F218252BB1DCD500B415FC /* SceneDelegate.swift in Sources */,
-				92F2183B2BB1E5ED00B415FC /* SOAResponse.swift in Sources */,
+				92F2183B2BB1E5ED00B415FC /* ResponseBackEnd.swift in Sources */,
 				92DDF36B2BC5E2400096C792 /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

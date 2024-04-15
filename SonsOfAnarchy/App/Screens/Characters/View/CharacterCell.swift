@@ -37,7 +37,7 @@ class CharacterCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(diggoResponse: DiggoResponse) {
+    func configure(diggoResponse: PersonagemResponse) {
         imageCharacter.sd_setImage(with: diggoResponse.imageChar)
         nameLabel.text = diggoResponse.firstName
         self.clipsToBounds = true
