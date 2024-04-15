@@ -13,7 +13,7 @@ class DetailsViewController: UIViewController {
     var viewModel: DetailsViewModel
     
     init(id: Int) {
-        self.viewModel = DetailsViewModel(id: viewModel.id)
+        self.viewModel = DetailsViewModel(id: id)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,12 +29,12 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavBar()
-//        detailsView.configure(personagem: <#T##Personagem#>)
-        viewModel.loadDataDetails(id: <#T##Int#>)
+        viewModel.loadDataDetails { personagem in
+            self.detailsView.configure(personagem: personagem)
+        }
     }
     
     private func setNavBar() {
-//        title = viewModel.diggoResponse.firstName
         view.backgroundColor = .systemBackground
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CharacterViewDelegate: AnyObject {
-    func goToDetails(diggoResponse: PersonagemResponse)
+    func goToDetails(id: Int)
 }
 
 class CharacterView: UIView {
@@ -99,8 +99,7 @@ extension CharacterView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let personagem = viewModel.filteredCharacters[indexPath.row].id
-        let detailVC = DetailsViewController(id: personagem)
-//        delegate?.goToDetails(diggoResponse: personagem)
+        delegate?.goToDetails(id: personagem)
     }
 }
 

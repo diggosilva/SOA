@@ -35,6 +35,15 @@ class DetailsView: UIView {
         return label
     }()
     
+    lazy var labelFullName: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        return label
+    }()
+    
     lazy var labelClub: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +78,8 @@ class DetailsView: UIView {
     func configure(personagem: Personagem) {
         imageChar.sd_setImage(with: personagem.imageChar)
         labelName.text = "\(personagem.firstName) \(personagem.lastName)"
-        labelGender.text = "GÊNERO: "
+        labelGender.text = "GÊNERO: \(personagem.gender)"
+        labelFullName.text = "NOME COMPLETO: \(personagem.fullName)"
         labelClub.text = "CLUBE: \(personagem.club)".replacingOccurrences(of: "Sons of Anarchy Motorcycle Club, Redwood Original (SAMCRO)", with: "Sons of Anarchy (SAMCRO)")
         labelOccupation.text = "OCUPAÇÃO: \(personagem.occupation)".capitalized
         labelPlayedBy.text = "INTERPRETE: \(personagem.playedBy.first ?? "")"
@@ -85,14 +95,7 @@ class DetailsView: UIView {
     }
     
     private func setHierarchy() {
-//        addSubviews([imageChar, labelName, labelGender, labelClub, labelOccupation, labelPlayedBy])
-        
-        addSubview(imageChar)
-        addSubview(labelName)
-        addSubview(labelGender)
-        addSubview(labelClub)
-        addSubview(labelOccupation)
-        addSubview(labelPlayedBy)
+        addSubviews([imageChar, labelName, labelGender, labelFullName, labelClub, labelOccupation, labelPlayedBy])
     }
     
     private func setConstraints() {
@@ -112,7 +115,11 @@ class DetailsView: UIView {
                 labelGender.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
                 labelGender.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
                 
-                labelClub.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
+                labelFullName.topAnchor.constraint(equalTo: labelGender.bottomAnchor, constant: 10),
+                labelFullName.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
+                labelFullName.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
+                
+                labelClub.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 10),
                 labelClub.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
                 labelClub.trailingAnchor.constraint(equalTo: labelName.trailingAnchor),
                 

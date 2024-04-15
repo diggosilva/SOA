@@ -10,7 +10,7 @@ import Foundation
 struct PersonagemResponse: Codable {
     let firstName: String
     let lastName: String
-//    let fullName: String
+    let fullName: String
     let gender: String
     let image: String
     let club: String
@@ -26,7 +26,7 @@ struct PersonagemResponse: Codable {
 struct Personagem: Codable {
     let firstName: String
     let lastName: String
-//    let fullName: String
+    let fullName: String
     let gender: String
     let image: String
     let club: String
