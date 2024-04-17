@@ -42,13 +42,13 @@ A Swift iOS application written in Swift, brings a list of characters from the S
 First of all download and install Xcode, Cocoapods and then clone the repository:
 
 ```sh
-$ git@github.com:diggosilva/SOA.git
+$ git@github.com:diggosilva/Sons-of-Anarchy.git
 ```
 
 After cloning, do the following:
 
 ```sh
-$ cd <diretorio-base>/SOA/
+$ cd <diretorio-base>/SonsOfAnarchy/
 $ open SonsOfAnarchy.xcworkspace/
 ```
 
