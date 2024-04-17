@@ -9,7 +9,6 @@ import UIKit
 import SDWebImage
 
 class CharacterViewController: UIViewController {
-
     lazy var viewModel = CharacterViewModel()
     lazy var characterView = CharacterView(viewModel: viewModel)
     
@@ -41,25 +40,25 @@ class CharacterViewController: UIViewController {
         viewModel.state.bind { state in
             switch state {
             case .loading:
-                self.showLoadingStates()
+                self.showLoadingState()
             case .loaded:
-                self.showLoadedStates()
+                self.showLoadedState()
             case .error:
-                self.showErrorStates()
+                self.showErrorState()
             }
         }
     }
     
-    func showLoadingStates() {
+    func showLoadingState() {
         characterView.removeFromSuperview()
     }
     
-    func showLoadedStates() {
+    func showLoadedState() {
         characterView.collectionViewCharacters.reloadData()
         characterView.spinner.stopAnimating()
     }
     
-    func showErrorStates() {
+    func showErrorState() {
         let alert = UIAlertController(title: "Ocorreu um erro!", message: "Tentar Novamente?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Sim", style: .default) { action in
             self.viewModel.loadDataCharacters()

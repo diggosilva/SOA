@@ -13,7 +13,7 @@ protocol CharacterViewDelegate: AnyObject {
 
 class CharacterView: UIView {
     lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
+        let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
         return spinner
